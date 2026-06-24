@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowRight } from 'lucide-react'
 
@@ -23,9 +23,9 @@ const container = {
   show: { transition: { staggerChildren: 0.08 } },
 }
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
 export default function Categories() {
