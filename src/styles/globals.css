@@ -1,0 +1,408 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   CSS VARIABLES - ROTA FITWEAR
+   ============================================ */
+:root {
+  --brand-white: #FFFFFF;
+  --brand-offwhite: #F5F2EE;
+  --brand-nude: #DCC8B4;
+  --brand-terracota: #C97C5D;
+  --brand-marrom: #7D5A4F;
+  --brand-preto: #111111;
+  --brand-dourado: #C8A96A;
+
+  --header-height: 72px;
+  --banner-height: 40px;
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-playfair: 'Playfair Display', Georgia, serif;
+}
+
+.dark {
+  --brand-white: #111111;
+  --brand-offwhite: #1a1a1a;
+  --brand-preto: #F5F2EE;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+  * {
+    @apply border-brand-nude/20;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-brand-white text-brand-preto font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  input, textarea, select {
+    @apply outline-none;
+  }
+
+  :focus-visible {
+    @apply ring-2 ring-brand-terracota ring-offset-2 outline-none;
+  }
+}
+
+/* ============================================
+   COMPONENT CLASSES
+   ============================================ */
+@layer components {
+
+  /* Container Premium */
+  .container-brand {
+    @apply max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Botões */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-brand-terracota text-white font-semibold
+           px-8 py-4 rounded-full
+           transition-all duration-300
+           hover:bg-brand-marrom hover:shadow-brand-lg hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-none
+           focus-visible:ring-2 focus-visible:ring-brand-terracota focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent text-brand-preto font-semibold
+           px-8 py-4 rounded-full
+           border-2 border-brand-preto
+           transition-all duration-300
+           hover:bg-brand-preto hover:text-white hover:-translate-y-0.5
+           active:translate-y-0
+           focus-visible:ring-2 focus-visible:ring-brand-preto focus-visible:ring-offset-2;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2
+           font-semibold px-8 py-4 rounded-full
+           transition-all duration-300 hover:-translate-y-0.5
+           focus-visible:ring-2 focus-visible:ring-brand-dourado focus-visible:ring-offset-2;
+    background: linear-gradient(135deg, #C8A96A 0%, #DCC8B4 50%, #C8A96A 100%);
+    background-size: 200% 100%;
+    color: #111111;
+    box-shadow: 0 4px 20px rgba(200, 169, 106, 0.4);
+  }
+
+  .btn-gold:hover {
+    background-position: right center;
+    box-shadow: 0 8px 32px rgba(200, 169, 106, 0.5);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           bg-transparent text-brand-preto font-medium
+           px-6 py-3 rounded-full
+           transition-all duration-200
+           hover:bg-brand-offwhite
+           focus-visible:ring-2 focus-visible:ring-brand-nude focus-visible:ring-offset-2;
+  }
+
+  .btn-icon {
+    @apply flex items-center justify-center
+           w-10 h-10 rounded-full
+           transition-all duration-200
+           hover:bg-brand-offwhite
+           focus-visible:ring-2 focus-visible:ring-brand-nude;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl overflow-hidden
+           shadow-card transition-all duration-300
+           hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  .card-glass {
+    @apply rounded-2xl overflow-hidden
+           backdrop-blur-md bg-white/70
+           border border-white/30 shadow-glass;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1
+           text-xs font-semibold px-2.5 py-1
+           rounded-full uppercase tracking-wide;
+  }
+
+  .badge-new {
+    @apply badge bg-brand-terracota text-white;
+  }
+
+  .badge-sale {
+    @apply badge bg-brand-preto text-white;
+  }
+
+  .badge-gold {
+    @apply badge text-brand-preto;
+    background: linear-gradient(135deg, #C8A96A, #DCC8B4);
+  }
+
+  .badge-bestseller {
+    @apply badge bg-brand-marrom text-white;
+  }
+
+  /* Input */
+  .input-brand {
+    @apply w-full px-4 py-3 rounded-xl
+           border border-brand-nude/40 bg-white
+           text-brand-preto placeholder:text-brand-nude/60
+           transition-all duration-200
+           focus:border-brand-terracota focus:ring-2 focus:ring-brand-terracota/20
+           dark:bg-brand-offwhite/10 dark:border-brand-nude/20;
+  }
+
+  /* Section */
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl
+           text-brand-preto leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-brand-marrom/70 text-lg md:text-xl
+           font-light leading-relaxed;
+  }
+
+  /* Divider */
+  .divider-brand {
+    @apply w-16 h-0.5 bg-gradient-to-r from-brand-terracota to-brand-dourado rounded-full;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply backdrop-blur-md bg-white/60 border border-white/30;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/40 border border-white/10;
+  }
+
+  /* Product Card */
+  .product-card {
+    @apply relative bg-white rounded-2xl overflow-hidden
+           cursor-pointer transition-all duration-500;
+  }
+
+  .product-card:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .product-card-image {
+    @apply relative overflow-hidden aspect-[3/4];
+  }
+
+  .product-card-image img {
+    @apply w-full h-full object-cover transition-transform duration-700;
+  }
+
+  .product-card:hover .product-card-image img {
+    transform: scale(1.05);
+  }
+
+  /* Price */
+  .price-current {
+    @apply text-brand-preto font-bold text-lg;
+  }
+
+  .price-original {
+    @apply text-brand-nude line-through text-sm font-normal;
+  }
+
+  .price-pix {
+    @apply text-green-600 font-semibold text-sm;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-pulse bg-gradient-to-r from-brand-offwhite via-brand-nude/30 to-brand-offwhite;
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Stars */
+  .stars {
+    @apply flex items-center gap-0.5 text-brand-dourado;
+  }
+
+  /* Social proof */
+  .social-proof {
+    @apply flex items-center gap-2 text-sm text-brand-marrom/70;
+  }
+
+  /* Scrollbar custom */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-brand::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .scrollbar-brand::-webkit-scrollbar-track {
+    @apply bg-brand-offwhite rounded-full;
+  }
+
+  .scrollbar-brand::-webkit-scrollbar-thumb {
+    @apply bg-brand-nude rounded-full;
+  }
+
+  .scrollbar-brand::-webkit-scrollbar-thumb:hover {
+    background-color: #C97C5D;
+  }
+
+  /* Text gradient */
+  .text-gradient-brand {
+    background: linear-gradient(135deg, #C97C5D, #C8A96A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C8A96A, #DCC8B4, #C8A96A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  .perspective-1000 { perspective: 1000px; }
+  .preserve-3d { transform-style: preserve-3d; }
+  .backface-hidden { backface-visibility: hidden; }
+
+  .line-clamp-1 { -webkit-line-clamp: 1; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+  .line-clamp-2 { -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+  .line-clamp-3 { -webkit-line-clamp: 3; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+}
+
+/* ============================================
+   SWIPER OVERRIDES
+   ============================================ */
+.swiper-pagination-bullet {
+  @apply !bg-brand-nude !opacity-50;
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.swiper-pagination-bullet-active {
+  @apply !bg-brand-terracota !opacity-100;
+  width: 24px !important;
+  border-radius: 4px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply !text-brand-preto !w-10 !h-10 rounded-full !bg-white shadow-card;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* ============================================
+   PWA
+   ============================================ */
+@media (display-mode: standalone) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@media print {
+  .no-print { display: none !important; }
+}
