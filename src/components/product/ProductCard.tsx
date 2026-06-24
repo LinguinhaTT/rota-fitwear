@@ -101,7 +101,7 @@ export default function ProductCard({ product, priority = false, showQuickBuy = 
             onMouseEnter={() => setCurrentImageIndex(1)}
             onMouseLeave={() => setCurrentImageIndex(0)}
           >
-            <AnimatePresence mode="crossfade">
+            <AnimatePresence mode="wait">
               <motion.div
                 key={currentImageIndex}
                 initial={{ opacity: 0 }}
